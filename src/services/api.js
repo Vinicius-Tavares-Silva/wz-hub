@@ -1,4 +1,4 @@
-const API__HEADERS = {
+const API__OPTIONS = {
   method: 'GET',
   headers: {
     'x-rapidapi-key': '5bb6120037msh134cc3b3f206749p18f4bbjsnfcd3ef68a420',
@@ -8,7 +8,7 @@ const API__HEADERS = {
 
 export async function getPlayerStats(gamertag, platform) {
   const url = `https://call-of-duty-modern-warfare.p.rapidapi.com/warzone/${gamertag}/${platform}`;
-  const playerStats = await fetch(url, API__HEADERS)
+  const playerStats = await fetch(url, API__OPTIONS)
     .then((response) => response.json())
     .then((data) => data)
     .catch((err) => {
@@ -20,7 +20,7 @@ export async function getPlayerStats(gamertag, platform) {
 
 export async function getWzMatches(gamertag, platform) {
   const url = `https://call-of-duty-modern-warfare.p.rapidapi.com/warzone-matches/${gamertag}/${platform}`;
-  const matches = await fetch(url, API__HEADERS)
+  const matches = await fetch(url, API__OPTIONS)
     .then((response) => response.json())
     .then((data) => data)
     .catch((err) => {
@@ -28,4 +28,16 @@ export async function getWzMatches(gamertag, platform) {
     });
 
   return matches;
+}
+
+export async function getPlayerWeeklyStats(gamertag, platform) {
+  const url = `https://call-of-duty-modern-warfare.p.rapidapi.com/weekly-stats/${gamertag}/${platform}`;
+  const playerWeeklyStats = await fetch(url, API__OPTIONS)
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((err) => {
+      console.error(err);
+    });
+
+  return playerWeeklyStats;
 }

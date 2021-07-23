@@ -3,13 +3,15 @@ import './App.css';
 import * as api from './services/api';
 
 function App() {
+
+  api.getPlayerWeeklyStats('ViniZika%2311929','battle')
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
-          {/* {console.log(api.getPlayerStats('ViniZika%2311929','battle'))} */}
         </p>
         <a
           className="App-link"
