@@ -8,9 +8,10 @@ const API__OPTIONS = {
 
 export async function getPlayerStats(gamertag, platform) {
   const url = `https://call-of-duty-modern-warfare.p.rapidapi.com/warzone/${gamertag}/${platform}`;
-  const playerStats = await fetch(url, API__OPTIONS)
+  await getWzMatches(gamertag, platform);
+  const playerStats = fetch(url, API__OPTIONS)
     .then((response) => response.json())
-    .then((data) => data)
+    .then((data) => console.log(data))
     .catch((err) => {
       console.error(err);
     });
@@ -20,9 +21,10 @@ export async function getPlayerStats(gamertag, platform) {
 
 export async function getWzMatches(gamertag, platform) {
   const url = `https://call-of-duty-modern-warfare.p.rapidapi.com/warzone-matches/${gamertag}/${platform}`;
-  const matches = await fetch(url, API__OPTIONS)
+  await getPlayerWeeklyStats(gamertag, platform);
+  const matches = fetch(url, API__OPTIONS)
     .then((response) => response.json())
-    .then((data) => data)
+    .then((data) => console.log(data.matches))
     .catch((err) => {
       console.error(err);
     });
@@ -30,9 +32,9 @@ export async function getWzMatches(gamertag, platform) {
   return matches;
 }
 
-export async function getPlayerWeeklyStats(gamertag, platform) {
+export function getPlayerWeeklyStats(gamertag, platform) {
   const url = `https://call-of-duty-modern-warfare.p.rapidapi.com/weekly-stats/${gamertag}/${platform}`;
-  const playerWeeklyStats = await fetch(url, API__OPTIONS)
+  const playerWeeklyStats = fetch(url, API__OPTIONS)
     .then((response) => response.json())
     .then((data) => console.log(data))
     .catch((err) => {
@@ -40,4 +42,18 @@ export async function getPlayerWeeklyStats(gamertag, platform) {
     });
 
   return playerWeeklyStats;
+}
+
+export const getMatch = () => {
+  const url = 'https://www.callofduty.com/api/papi-client/crm/cod/v2/title/mw/platform/battle/fullMatch/wz/8007599737329537308/it'
+  const player = fetch(url).then(response => response.json())
+  .then(result => {
+    const allPlayers = result.data.allPlayers;
+    console.log(allPlayers)
+    const a = allPlayers.filter((player) => player.player.team === 'team_seven');
+    console.log(a)
+  }).catch((err) => {
+    console.error(err);
+  });;
+  return player;
 }

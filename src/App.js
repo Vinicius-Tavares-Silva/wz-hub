@@ -1,15 +1,28 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import * as api from './services/api';
 
-function App() {
+class App extends React.Component{
 
-  api.getPlayerWeeklyStats('ViniZika%2311929','battle')
 
-  return (
+componentDidMount() {
+  // api.getPlayerWeeklyStats('ViniZika%2311929','battle');
+}
+
+handleClick() {
+  console.log('clicou');
+  // api.getPlayerStats('ViniZika%2311929','battle');
+  console.log(api.getMatch());
+}
+  
+
+  render() {
+    return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="logo"/>
+        <button onClick={() => this.handleClick()}>Request</button>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -23,7 +36,7 @@ function App() {
         </a>
       </header>
     </div>
-  );
+  );}
 }
 
 export default App;
