@@ -1,28 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import * as api from './services/api';
 
-class App extends React.Component{
-
-
-componentDidMount() {
-  // api.getPlayerWeeklyStats('ViniZika%2311929','battle');
-}
-
-handleClick() {
-  console.log('clicou');
-  // api.getPlayerStats('ViniZika%2311929','battle');
-  console.log(api.getMatch('11269005300838557187'));
-}
-  
-
-  render() {
-    return (
+function App() {
+  return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo"/>
-        <button onClick={() => this.handleClick()}>Request</button>
+        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -36,7 +20,7 @@ handleClick() {
         </a>
       </header>
     </div>
-  );}
+  );
 }
 
 export default App;

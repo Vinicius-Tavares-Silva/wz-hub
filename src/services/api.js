@@ -10,7 +10,7 @@ export function getPlayerStats(gamertag, platform) {
   const url = `https://call-of-duty-modern-warfare.p.rapidapi.com/warzone/${gamertag}/${platform}`;
   const playerStats = fetch(url, API__OPTIONS)
     .then((response) => response.json())
-    .then((data) => console.log(data))
+    .then((data) => data)
     .catch((err) => {
       console.error(err);
     });
@@ -22,7 +22,7 @@ export function getWzMatches(gamertag, platform) {
   const url = `https://call-of-duty-modern-warfare.p.rapidapi.com/warzone-matches/${gamertag}/${platform}`;
   const matches = fetch(url, API__OPTIONS)
     .then((response) => response.json())
-    .then((data) => console.log(data.matches))
+    .then((data) => data.matches)
     .catch((err) => {
       console.error(err);
     });
@@ -34,7 +34,7 @@ export function getPlayerWeeklyStats(gamertag, platform) {
   const url = `https://call-of-duty-modern-warfare.p.rapidapi.com/weekly-stats/${gamertag}/${platform}`;
   const playerWeeklyStats = fetch(url, API__OPTIONS)
     .then((response) => response.json())
-    .then((data) => console.log(data))
+    .then((data) => data.wz)
     .catch((err) => {
       console.error(err);
     });
@@ -44,13 +44,12 @@ export function getPlayerWeeklyStats(gamertag, platform) {
 
 export function getMatch(matchId) {
   const url = `https://www.callofduty.com/api/papi-client/crm/cod/v2/title/mw/platform/battle/fullMatch/wz/${matchId}/it`
-  const players = fetch(url).then(response => response.json())
-  .then(result => result.data.allPlayers)
+  const players = fetch(url)
+  .then(response => response.json())
+  .then(result => console.log(result.data.allPlayers))
   .catch((err) => {
     console.error(err);
   });;
 
   return players;
 }
-
-
