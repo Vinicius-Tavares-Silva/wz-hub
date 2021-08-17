@@ -13,7 +13,7 @@ componentDidMount() {
 handleClick() {
   console.log('clicou');
   // api.getPlayerStats('ViniZika%2311929','battle');
-  console.log(api.getMatch());
+  console.log(api.getMatch('11269005300838557187'));
 }
   
 

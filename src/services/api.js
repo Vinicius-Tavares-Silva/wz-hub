@@ -6,9 +6,8 @@ const API__OPTIONS = {
   },
 };
 
-export async function getPlayerStats(gamertag, platform) {
+export function getPlayerStats(gamertag, platform) {
   const url = `https://call-of-duty-modern-warfare.p.rapidapi.com/warzone/${gamertag}/${platform}`;
-  await getWzMatches(gamertag, platform);
   const playerStats = fetch(url, API__OPTIONS)
     .then((response) => response.json())
     .then((data) => console.log(data))
@@ -19,9 +18,8 @@ export async function getPlayerStats(gamertag, platform) {
   return playerStats;
 }
 
-export async function getWzMatches(gamertag, platform) {
+export function getWzMatches(gamertag, platform) {
   const url = `https://call-of-duty-modern-warfare.p.rapidapi.com/warzone-matches/${gamertag}/${platform}`;
-  await getPlayerWeeklyStats(gamertag, platform);
   const matches = fetch(url, API__OPTIONS)
     .then((response) => response.json())
     .then((data) => console.log(data.matches))
@@ -44,16 +42,15 @@ export function getPlayerWeeklyStats(gamertag, platform) {
   return playerWeeklyStats;
 }
 
-export const getMatch = () => {
-  const url = 'https://www.callofduty.com/api/papi-client/crm/cod/v2/title/mw/platform/battle/fullMatch/wz/8007599737329537308/it'
-  const player = fetch(url).then(response => response.json())
-  .then(result => {
-    const allPlayers = result.data.allPlayers;
-    console.log(allPlayers)
-    const a = allPlayers.filter((player) => player.player.team === 'team_seven');
-    console.log(a)
-  }).catch((err) => {
+export function getMatch(matchId) {
+  const url = `https://www.callofduty.com/api/papi-client/crm/cod/v2/title/mw/platform/battle/fullMatch/wz/${matchId}/it`
+  const players = fetch(url).then(response => response.json())
+  .then(result => result.data.allPlayers)
+  .catch((err) => {
     console.error(err);
   });;
-  return player;
+
+  return players;
 }
+
+
